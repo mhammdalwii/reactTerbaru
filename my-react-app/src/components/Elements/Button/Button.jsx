@@ -1,7 +1,7 @@
 const Button = (props) => {
-  const { children, variant = "bg-black" } = props;
+  const { children, classname = "bg-black" } = props;
   return (
-    <button className={`${variant} text-white font-bold py-2 px-4 rounded`} type="submit">
+    <button className={`${classname} text-white font-bold py-2 px-4 rounded`} type="submit">
       {children}
     </button>
   );
