@@ -1,7 +1,7 @@
 const Button = (props) => {
-  const { children, classname = "bg-black" } = props;
+  const { children, classname = "bg-black", onClick = () => {}, type = "button" } = props;
   return (
-    <button className={`${classname} text-white font-bold py-2 px-4 rounded`} type="submit">
+    <button className={`${classname} text-white font-bold py-2 px-2 rounded`} type={type} onClick={() => onClick()}>
       {children}
     </button>
   );
