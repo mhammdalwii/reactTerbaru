@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Button from "../Elements/Button";
 import InputForms from "../Elements/Input";
 
@@ -9,6 +10,14 @@ const FormLogin = () => {
     window.location.href = "/products";
     console.log("Login button clicked");
   };
+
+  const emailRef = useRef(null);
+
+  useEffect(() => {
+    if (emailRef.current) {
+      emailRef.current.focus();
+    }
+  }, []);
 
   return (
     <form onSubmit={handleLogin}>

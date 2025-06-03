@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProducts";
 
@@ -61,6 +61,30 @@ const ProductPage = () => {
       setCart([...cart, { id, qty: 1 }]);
     }
   };
+
+  // useRef
+  // const cartRef = useRef([JSON.parse(localStorage.getItem("cart")) || []]);
+
+  // const handleAddToCartRef = () => {
+  //   cartRef.current = [
+  //     ...cartRef.current,
+  //     {
+  //       id: 1,
+  //       qty: 1,
+  //     },
+  //   ];
+  //   localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  // };
+
+  const totalPriceRef = useRef([null]);
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
+    }
+  });
+
   return (
     <Fragment>
       <div className="flex justify-end h-20 bg-blue-600 items-center px-10 text-white">
@@ -105,7 +129,7 @@ const ProductPage = () => {
                   </tr>
                 );
               })}
-              <tr>
+              <tr ref={totalPriceRef}>
                 <td colSpan={3}>Total Price</td>
                 <td>
                   Rp{" "}
