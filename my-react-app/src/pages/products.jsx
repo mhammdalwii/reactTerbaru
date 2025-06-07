@@ -1,17 +1,27 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProducts";
 import { getProducts } from "../services/product.service";
-
-const email = localStorage.getItem("email");
+import { getUsername } from "../services/auth.service";
 
 const ProductPage = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState([]);
+  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     {
       setCart(JSON.parse(localStorage.getItem("cart")) || []);
+    }
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUsername(getUsername(token));
+    } else {
+      window.location.href = "/login";
     }
   }, []);
 
@@ -29,11 +39,12 @@ const ProductPage = () => {
   useEffect(() => {
     getProducts((data) => {
       setProducts(data);
+      setLoading(false);
     });
-  });
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("email");
+    localStorage.removeItem("token");
     localStorage.removeItem("password");
     window.location.href = "/login";
   };
@@ -60,19 +71,12 @@ const ProductPage = () => {
   //   localStorage.setItem("cart", JSON.stringify(cartRef.current));
   // };
 
-  const totalPriceRef = useRef([null]);
-  useEffect(() => {
-    if (products.length > 0 && cart.length > 0) {
-      totalPriceRef.current.style.display = "table-row";
-    } else {
-      totalPriceRef.current.style.display = "none";
-    }
-  });
+  if (loading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <Fragment>
       <div className="flex justify-end h-20 bg-blue-600 items-center px-10 text-white">
-        {email}
+        {username}
         <Button
           classname="bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 text-black font-medium rounded-lg text-sm px-5 py-2.5 ml-3"
           onClick={handleLogout}
@@ -115,16 +119,17 @@ const ProductPage = () => {
                     </tr>
                   );
                 })}
-              <tr ref={totalPriceRef}>
-                <td colSpan={3}>Total Price</td>
-                <td>
-                  ${" "}
-                  {Number(totalPrice).toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </td>
-              </tr>
+              {products.length > 0 && cart.length > 0 && (
+                <tr>
+                  <td colSpan={3}>Total Price</td>
+                  <td>
+                    {Number(totalPrice).toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

@@ -5,7 +5,6 @@ export const getProducts = (calback) => {
     .get("https://fakestoreapi.com/products")
     .then((res) => {
       calback(res.data);
-      console.log(res);
     })
     .catch((err) => {
       console.log(err);
