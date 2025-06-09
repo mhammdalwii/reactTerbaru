@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Button from "../Elements/Button";
+import { Link } from "react-router-dom";
 
 const CardProduct = (props) => {
   const { children } = props;
@@ -7,12 +8,12 @@ const CardProduct = (props) => {
 };
 
 const Header = (props) => {
-  const { image } = props;
+  const { image, id } = props;
   return (
     <div className="px-5 pt-5">
-      <a href="#">
+      <Link to={`/product/${id}`}>
         <img className="p-4 rounded-t-lg w-full object-cover" src={image} alt="product image" />
-      </a>
+      </Link>
     </div>
   );
 };
