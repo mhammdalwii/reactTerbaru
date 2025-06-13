@@ -5,7 +5,7 @@ const addToCart = createAction("ADD_TO_CART");
 const login = createAction("SESSION_LOGIN");
 
 const loginReducer = createReducer({ status: false }, (builder) => {
-  builder.addCase(login, (state, action) => {
+  builder.addCase(login, (state) => {
     state.status = true;
   });
 });
