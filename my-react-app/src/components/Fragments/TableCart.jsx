@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useSelector } from "react-redux";
+import { DarkMode } from "../../Context/DarkMode";
 
 const TableCart = (props) => {
   const { products } = props;
   const cart = useSelector((state) => state.cart.data);
   const [totalPrice, setTotalPrice] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
 
   useEffect(() => {
     if (products.length > 0 && cart.length > 0) {
@@ -18,7 +21,6 @@ const TableCart = (props) => {
   }, [cart, products]);
 
   const totalPriceRef = useRef(null);
-
   useEffect(() => {
     if (totalPriceRef.current) {
       if (cart.length > 0) {
@@ -30,7 +32,7 @@ const TableCart = (props) => {
   }, [cart]);
 
   return (
-    <table className="min-w-full divide-y divide-gray-200 mt-5 text-left table-auto border-spacing-x-5 ">
+    <table className={`min-w-full divide-y divide-gray-200 mt-5 text-left table-auto border-spacing-x-5 ${isDarkMode ? "bg-slate-900 text-white" : "bg-white text-black"}`}>
       <thead>
         <tr>
           <th>Product</th>
