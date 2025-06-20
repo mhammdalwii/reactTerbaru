@@ -4,6 +4,7 @@ import Button from "../Elements/Button";
 import { useEffect, useState, useContext } from "react";
 import { DarkMode } from "../../Context/DarkMode";
 import { FaSun, FaMoon } from "react-icons/fa";
+import { useTotalPrice } from "../../Context/TotalPriceContext";
 
 const Navbar = () => {
   const username = useLogin();
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [totalCart, setTotalCart] = useState(0);
   const cart = useSelector((state) => state.cart.data);
   const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
+  const { total } = useTotalPrice();
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -32,7 +34,9 @@ const Navbar = () => {
       >
         Logout !
       </Button>
-      <div className="flex items-center ml-5 bg-gray-500 text-gray-800 rounded-lg px-3 py-2">{totalCart}</div>
+      <div className="flex items-center ml-5 bg-gray-500 text-gray-800 rounded-lg px-3 py-2">
+        Item : {totalCart} | price : $ {total}
+      </div>
       <button className="right-2 top-2 mx-5 bg-black p-2 text-white rounded" onClick={() => setIsDarkMode(!isDarkMode)}>
         {isDarkMode ? (
           <>

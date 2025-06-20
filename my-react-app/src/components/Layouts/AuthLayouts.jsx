@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { DarkMode } from "../../Context/DarkMode";
 import { FaSun, FaMoon } from "react-icons/fa";
 
+
 const AuthLayouts = (props) => {
   const { children, title, type } = props;
   const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
