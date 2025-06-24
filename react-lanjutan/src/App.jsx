@@ -1,26 +1,26 @@
-import { Fragment, useId } from "react";
+import { Fragment, useState } from "react";
 
-function Input(props) {
-  const { id = "input", label } = props;
-  const inputId = useId();
+function Input() {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState("Coding", "Create Videos");
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const addTodo = (newTodo) => {
+    setTodos((todos) => [...todos, newTodo]);
+  };
+
   return (
     <Fragment>
-      {" "}
-      <label htmlFor="">
-        <span>{label}</span>
-        <input type="text" id={`${inputId}-${id}`} />
-      </label>
-      <p aria-details={`${inputId}-${id}`}>Name should contain at least first name and last name</p>
+      <h1>hello world</h1>
     </Fragment>
   );
 }
 
 function App() {
-  return (
-    <>
-      <Input />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
