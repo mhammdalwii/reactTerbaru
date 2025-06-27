@@ -1,26 +1,12 @@
-import { Fragment, useState } from "react";
-
-function Input() {
-  const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState("Coding", "Create Videos");
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const addTodo = (newTodo) => {
-    setTodos((todos) => [...todos, newTodo]);
-  };
-
-  return (
-    <Fragment>
-      <h1>hello world</h1>
-    </Fragment>
-  );
-}
+import { Fragment } from "react";
+import ExampleUseMemo from "./components/ExampleUseMemo";
 
 function App() {
-  return <></>;
+  return (
+    <Fragment>
+      <ExampleUseMemo />;
+    </Fragment>
+  );
 }
 
 export default App;

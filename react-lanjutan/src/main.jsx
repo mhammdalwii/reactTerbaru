@@ -2,11 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 
-createRoot(document.getElementById("root")),
-  {
-    indetifierPrefix: "react-lanjutan",
-  }.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  identifierPrefix: "react-lanjutan",
+});
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
