@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-yellow-400 py-4 relative z-50">
+    <header className="bg-[#FFC107] py-4 relative z-50">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Logo />
 
