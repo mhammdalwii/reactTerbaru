@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/swr/fetcher";
-import ProductView from "@/views";
+import ProductView from "@/views/product";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -7,7 +7,7 @@ import useSWR from "swr";
 const ProductPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLogin, setIsLogin] = useState(true);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const ProductPage = () => {
     }
   }, []);
 
-  const { data, error, isLoading } = useSWR("/api/product", fetcher);
+  const { data, isLoading } = useSWR("/api/product", fetcher);
 
   // useEffect(() => {
   //   fetch("/api/product")
