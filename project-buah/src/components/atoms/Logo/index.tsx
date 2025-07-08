@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo.png";
 
 const Logo: React.FC = () => (
   <div className="flex items-center space-x-12">
