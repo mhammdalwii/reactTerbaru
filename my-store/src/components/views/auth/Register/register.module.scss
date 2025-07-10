@@ -1,0 +1,33 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  &__form {
+    width: 30%;
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    &__input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 5px;
+      background-color: #eee;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+    }
+  }
+}
