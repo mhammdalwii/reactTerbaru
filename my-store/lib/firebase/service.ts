@@ -21,10 +21,10 @@ export async function retrieveDataById(collectionName: string, id: string) {
 export async function signUp(
   userData: {
     email: string;
+    username: string;
+    phone: string;
     password: string;
     name: string;
-    phone: string;
-    address: string;
     role?: string;
   },
   callback: Function
